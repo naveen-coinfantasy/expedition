@@ -5,7 +5,7 @@ import { IChain as Chain } from "../models/chain";
 function useEthRPC(queryUrlOverride?: string): [ERPC, Dispatch<Chain>] {
   const [erpc, setErpc] = React.useState<ERPC>();
   const [selectedChain, setSelectedChain] = React.useState<Chain>();
-  const [urlOverride] = useState(queryUrlOverride || process.env.REACT_APP_ETH_RPC_URL);
+  const [urlOverride] = useState(queryUrlOverride || "http://15.206.188.238:9650/ext/bc/YgsWAbdLykB7nCDWdBzsBFGBb2JAcTN6cSgUMWm3V3ndirhxw/rpc");
 
   useEffect(() => {
     if (selectedChain === undefined && !urlOverride) { return; }
@@ -54,7 +54,7 @@ function useEthRPC(queryUrlOverride?: string): [ERPC, Dispatch<Chain>] {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedChain]);
-
+  // console.log('erpc',erpc?.eth_syncing().then((e)=>console.log(e)))
   return [erpc as ERPC, setSelectedChain];
 }
 

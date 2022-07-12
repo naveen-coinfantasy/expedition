@@ -1,7 +1,8 @@
 import { grey } from "@material-ui/core/colors";
 import { Theme } from "@material-ui/core";
 
-const sansSerif = "'Roboto', 'Helvetica Neue', Helvetica, sans-serif";
+// const sansSerif = "'Roboto', 'Helvetica Neue', Helvetica, sans-serif";
+const sansSerif = "'Oxanium', cursive";
 
 const baseLabelStyles = {
   fontFamily: sansSerif,

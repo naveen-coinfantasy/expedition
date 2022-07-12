@@ -69,7 +69,13 @@ export default (props: any) => {
 
   useInterval(() => {
     if (!erpc) { return; }
-    erpc.eth_syncing().then(setSyncing);
+    try{
+      // console.log(erpc.eth_syncing())
+      erpc?.eth_syncing().then(setSyncing).catch((error)=>console.log(error));
+    }
+    catch(error){
+      console.log('eth sync error',error)
+    }
   }, 10000, true);
 
   React.useEffect(() => {
@@ -116,7 +122,7 @@ export default (props: any) => {
               <Typography variant="h4">{weiToGwei(hexToNumber(gasPrice))} Gwei</Typography>
             </ChartCard>
           </Grid>
-          <Grid key="hRate" item>
+          {/* <Grid key="hRate" item>
             <ChartCard title={t("Network Hash Rate")}>
               {block &&
                 <HashRate block={block} blockTime={config.blockTime}>
@@ -124,7 +130,7 @@ export default (props: any) => {
                 </HashRate>
               }
             </ChartCard>
-          </Grid>
+          </Grid> */}
           <Grid key="peers" item>
             <ChartCard title={t("Peers")}>
               <Typography variant="h4">{hexToNumber(peerCount)}</Typography>
@@ -133,14 +139,14 @@ export default (props: any) => {
         </Grid>
       </Grid>
       <StatCharts victoryTheme={victoryTheme} blocks={blocks} />
-      <Grid container justify="flex-end">
+      {/* <Grid container justify="flex-end">
         <Button
           color="primary"
           variant="outlined"
           endIcon={<ArrowForwardIos />}
           onClick={() => props.history.push("/stats/miners")}
         >More Stats</Button>
-      </Grid>
+      </Grid> */}
       <br />
 
       <BlockListContainer

@@ -47,26 +47,41 @@ const Address: React.FC<IProps> = ({ match, history }) => {
   }, [blockNumber, blockNum, history, address]);
 
   React.useEffect(() => {
-    if (blockNumber === undefined || !erpc) {
+    console.log(isNaN(blockNumber))
+    if (blockNumber === undefined || !erpc || isNaN(blockNumber)) {
       return;
     }
-    const hexBlockNumber = `0x${blockNumber.toString(16)}`;
-    erpc.eth_getTransactionCount(address, hexBlockNumber).then((txCount) => {
-      if (txCount === null) { return; }
-      setTransactionCount(txCount);
-      return txCount;
-    }).then((txCountRes: string | undefined) => {
-      if (txCountRes) {
-        erpc.eth_getBalance(address, hexBlockNumber).then((b) => {
-          if (b === null) { return; }
-          setBalance(b);
-        });
-        erpc.eth_getCode(address, hexBlockNumber).then((c) => {
-          if (c === null) { return; }
-          setCode(c);
-        });
-      }
-    });
+    try{
+      
+      const hexBlockNumber = `0x${blockNumber.toString(16)}`;
+      erpc.eth_getTransactionCount(address, hexBlockNumber).then((txCount) => {
+        
+        if (txCount === null) { return; }
+        setTransactionCount(txCount);
+        return txCount;
+      }).then((txCountRes: string | undefined) => {
+        
+        if (txCountRes) {
+          erpc.eth_getBalance(address, hexBlockNumber).then((b) => {
+           
+            if (b === null) { return; }
+            setBalance(b);
+           
+          }).catch((e)=>console.log(e))
+          erpc.eth_getCode(address, hexBlockNumber).then((c) => {
+            console.log('c',c)
+            if (c === null) { return; }
+            setCode(c);
+            
+
+          }).catch((e)=>console.log(e))
+        }
+      }).catch((e)=>console.log(e))
+    }
+    catch(error){
+      console.log(error)
+    }
+    
   }, [blockNumber, address, erpc]);
 
   React.useEffect(() => {

@@ -46,7 +46,7 @@ import {
 import { createPreserveQueryHistory } from "./helpers/createPreserveHistory";
 import BlockRawContainer from "./containers/BlockRawContainer";
 import TransactionRawContainer from "./containers/TransactionRawContainer";
-import expeditionLogo from "./expedition.png";
+import cfLogo from "./cf.svg";
 import MinerStatsPage from "./containers/MinerStatsPage";
 import { IChain as Chain } from "./models/chain";
 import useChainListStore from "./stores/useChainListStore";
@@ -67,6 +67,7 @@ function App(props: any) {
 
   const [selectedChain, setSelectedChain] = useState<Chain>();
   const [chains, setChains] = useChainListStore<[Chain[], Dispatch<Chain[]>]>();
+  console.log('chains',chains)
   const [ethRPC, setEthRPCChain] = useEthRPCStore();
 
   const [addChainDialogIsOpen, setAddChainDialogIsOpen] =
@@ -266,12 +267,12 @@ function App(props: any) {
                         alt="expedition-logo"
                         height="30"
                         style={{ marginRight: "10px" }}
-                        src={expeditionLogo}
+                        src={cfLogo}
                       />
                     </Grid>
                     <Grid>
                       <Typography color="textSecondary" variant="h6">
-                        {t("Expedition")}
+                        {t("Coinfantasy")}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -321,11 +322,11 @@ function App(props: any) {
                     {!query.rpcUrl && <CircularProgress />}
                   </>
                 )}
-                <Tooltip title={t("Add custom chain") as string}>
+                {/* <Tooltip title={t("Add custom chain") as string}>
                   <IconButton onClick={openAddChainModal}>
                     <PlaylistAddIcon />
                   </IconButton>
-                </Tooltip>
+                </Tooltip> */}
                 <LanguageMenu />
                 <Tooltip title={t("JSON-RPC API Documentation") as string}>
                   <IconButton

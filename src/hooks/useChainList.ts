@@ -8,20 +8,25 @@ import React from "react";
 export default function() {
   const [chains, setChains] = React.useState<Chain[]>([
     {
-      name: "Ethereum Classic",
-      network: "mainnet",
-      rpc: ["https://www.ethercluster.com/etc"],
+      name: "CoinFantasy",
+      network: "Beta Coinfantasy",
+      rpc: ["http://15.206.188.238:9650/ext/bc/YgsWAbdLykB7nCDWdBzsBFGBb2JAcTN6cSgUMWm3V3ndirhxw/rpc"],
     },
-    {
-      name: "Matic",
-      network: "mainnet",
-      rpc: ["https://rpc-mainnet.matic.network"],
-    },
-    {
-      name: "Matic - Mumbai",
-      network: "testnet",
-      rpc: ["https://rpc-mumbai.matic.today"],
-    },
+    // {
+    //   name: "Ethereum Classic",
+    //   network: "mainnet",
+    //   rpc: ["https://www.ethercluster.com/etc"],
+    // },
+    // {
+    //   name: "Matic",
+    //   network: "mainnet",
+    //   rpc: ["https://rpc-mainnet.matic.network"],
+    // },
+    // {
+    //   name: "Matic - Mumbai",
+    //   network: "testnet",
+    //   rpc: ["https://rpc-mumbai.matic.today"],
+    // },
   ]);
 
   // uncomment once we add 'chain list provider' concept. This list blows.
